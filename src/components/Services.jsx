@@ -78,7 +78,7 @@ const Services = () => {
             title: "Bonded Transport",
             desc: "Authorized to move goods through customs efficiently and securely.",
             image: service3,
-            features: ["Customs Bonded Carrier", "Seamless Port Ops", "Regulatory Compliance", "Efficient Processing"]
+            features: [ "Seamless Port Ops", "Regulatory Compliance", "Efficient Processing"]
         }
     ];
 
