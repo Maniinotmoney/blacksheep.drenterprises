@@ -8,22 +8,36 @@ import truckRoad from '../assets/truck-road.jpeg';
 import shipContainer from '../assets/ship-container.jpeg';
 import logistics from '../assets/logistics.jpg';
 
-const heroImages = [
-    "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Logistics/Industrial
-    "https://images.unsplash.com/photo-1519003722824-194d4455a60c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
-    "https://images.unsplash.com/photo-1578575437130-527eed3abbec?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJlaWdodHxlbnwwfHwwfHx8MA==",
-
+const slides = [
+    {
+        image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=1744&auto=format&fit=crop",
+        text: ["RELIABLE TRUCKING &", "CONTAINER SOLUTIONS"],
+        alignment: { justify: 'center', align: 'center', textAlign: 'center' }
+    },
+    {
+        image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?fm=jpg&q=60&w=3000&auto=format&fit=crop",
+        text: ["NATIONWIDE FLEET", "& LOGISTICS EXPERTS"],
+        alignment: { justify: 'flex-start', align: 'flex-end', textAlign: 'left' }
+    },
+    {
+        image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?fm=jpg&q=60&w=3000&auto=format&fit=crop",
+        text: ["SECURE FREIGHT", "MANAGEMENT SYSTEM"],
+        alignment: { justify: 'flex-end', align: 'flex-start', textAlign: 'right' }
+    }
 ];
 
 const Hero = () => {
-    const [currentImage, setCurrentImage] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentImage((prev) => (prev + 1) % heroImages.length);
-        }, 6000); // Change every 6 seconds to allow zoom to complete/progress
+            setCurrentIndex((prev) => (prev + 1) % slides.length);
+        }, 5000); // Change every 6 seconds to allow zoom to complete/progress
         return () => clearInterval(timer);
     }, []);
+
+    const currentSlide = slides[currentIndex];
+    const { alignment } = currentSlide;
 
     return (
         <section id="hero" className="hero-section">
@@ -33,56 +47,72 @@ const Hero = () => {
             <div className="hero-carousel">
                 <AnimatePresence mode='wait'>
                     <motion.div
-                        key={currentImage}
+                        key={currentIndex}
                         className="hero-bg-image"
-                        initial={{ scale: 1, opacity: 0 }}
-                        animate={{ scale: 1.1, opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{ y: "100%", opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: "-100%", opacity: 0 }}
                         transition={{
-                            opacity: { duration: 1.5 }, // Smooth fade
-                            scale: { duration: 7, ease: "linear" } // Slow zoom exceeding slide time slightly
+                            duration: 1.2,
+                            ease: [0.33, 1, 0.68, 1]
                         }}
-                        style={{ backgroundImage: `url(${heroImages[currentImage]})` }}
+                        style={{ backgroundImage: `url(${currentSlide.image})` }}
                     />
                 </AnimatePresence>
             </div>
 
-            <div className="container hero-content">
+            {/* Dynamic Content Container */}
+            <motion.div
+                className="container hero-content"
+                animate={{
+                    justifyContent: alignment.justify,
+                    alignItems: alignment.align,
+                }}
+                transition={{ duration: 1.2, ease: "easeInOut" }} // Slower, smoother transition
+                style={{
+                    display: 'flex',
+                    height: '90%',
+                    position: 'relative',
+                    zIndex: 10
+                }}
+            >
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
                     className="hero-text-content"
+                    animate={{ textAlign: alignment.textAlign }}
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                    style={{ width: '100%', maxWidth: '900px' }} // Ensure it can alignment properly
                 >
                     <motion.div
                         className="hero-badge"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5, duration: 0.5 }}
+                        style={{ display: 'inline-block' }}
                     >
                         EST. 2020 • 15+ Years Experience
                     </motion.div>
 
                     <motion.h1
                         className="hero-title"
+                        key={currentIndex} // Re-trigger text stagger on slide change
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
+                        animate="visible"
                         variants={{
                             visible: { transition: { staggerChildren: 0.05 } },
                             hidden: {}
                         }}
                     >
                         {/* Helper to split text */}
-                        {[
-                            "RELIABLE TRUCKING &",
-                            // "TRUCKING &",
-                            "CONTAINER SOLUTIONS"
-                        ].map((line, i) => (
-                            <div key={i} style={{ overflow: "hidden", display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+                        {currentSlide.text.map((line, i) => (
+                            <div key={i} style={{
+                                overflow: "hidden",
+                                display: "flex",
+                                justifyContent: alignment.textAlign === 'center' ? 'center' : alignment.textAlign === 'right' ? 'flex-end' : 'flex-start',
+                                flexWrap: "wrap"
+                            }}>
                                 {line.split("").map((char, index) => (
                                     <motion.span
-                                        key={index}
+                                        key={`${i}-${index}`}
                                         variants={{
                                             hidden: { y: "100%" },
                                             visible: {
@@ -103,19 +133,18 @@ const Hero = () => {
                         ))}
                     </motion.h1>
 
-                    <p className="hero-subtitle">
+                    <p className="hero-subtitle" style={{ marginLeft: alignment.textAlign === 'right' ? 'auto' : 0, marginRight: alignment.textAlign === 'left' ? 'auto' : 0 }}>
                         Premier drayage, intermodal transport, and secure container storage in the Bay Area.
                         Serving Oakland, CA and beyond with a dedicated fleet.
                     </p>
 
-                    {/* <div className="hero-cta-group">
-                        <a href="#contact" className="btn btn-white hero-btn">
+                    {/* <div className="hero-cta-group"> */}
+                    {/* <a href="#contact" className="btn btn-white hero-btn">
                             LET'S TALK
                         </a>
                         <a href="tel:5109094834" className="btn btn-transparent hero-btn">
                             <Phone size={20} className="icon-phone" />
                             OR CALL NOW: 510-909-4834
-                        </a>
                     </div> */}
 
                     {/* <div className="hero-google-review">
@@ -129,7 +158,7 @@ const Hero = () => {
                     </div> */}
 
                 </motion.div>
-            </div>
+            </motion.div>
         </section>
     );
 };
