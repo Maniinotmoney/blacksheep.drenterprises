@@ -1,0 +1,240 @@
+.track-record-section {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #004e92 0%, #000428 100%);
+    padding: 100px 0;
+    overflow: hidden;
+    color: #ffffff;
+    perspective: 1500px;
+    /* Essential for 3D effect on the whole section scope */
+}
+
+.track-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.track-header {
+    position: relative;
+    z-index: 5;
+    max-width: 800px;
+    pointer-events: none;
+    /* Let mouse pass through to container for tracking */
+}
+
+.track-label-line {
+    height: 4px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    width: 60px;
+}
+
+.track-subtitle {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    margin-bottom: 15px;
+}
+
+.track-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+/* Gallery Wrapper */
+.track-gallery-wrapper {
+    position: relative;
+    height: 450px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    /* Local perspective */
+    z-index: 10;
+}
+
+.skewed-gallery {
+    display: flex;
+    gap: 0px;
+    /* Overlap slightly managed by transforms */
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    /* CRITICAL */
+    position: relative;
+}
+
+.skew-image-card {
+    width: 320px;
+    height: 220px;
+    background: #000;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 0 -20px;
+    /* Slight overlap */
+    position: relative;
+    border-radius: 4px;
+    transform-style: preserve-3d;
+}
+
+.skew-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: opacity 0.3s, transform 0.5s;
+}
+
+.skew-image-card:hover img {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.center-card {
+    width: 380px;
+    /* Larger center */
+    height: 260px;
+    z-index: 10;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Shine effect on card hover/movement */
+.card-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Footer Section */
+.track-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 60px;
+    margin-top: -60px;
+    position: relative;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.since-block {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    line-height: 1;
+}
+
+.since-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.year-text {
+    font-size: 8rem;
+    font-weight: 900;
+    background: linear-gradient(to bottom, #ffffff, #a1c4fd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 25px rgba(0, 86, 210, 0.6));
+}
+
+.track-desc-block {
+    max-width: 400px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    padding-bottom: 20px;
+    background: rgba(0, 4, 40, 0.6);
+    /* Slight background for readability over parallax elements if needed */
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .track-record-section {
+        padding: 60px 0;
+        /* Reduced vertical padding */
+    }
+
+    .track-container {
+        padding: 0 20px;
+        /* Ensure horizontal padding */
+        gap: 30px;
+    }
+
+    .track-title {
+        font-size: 2rem;
+        /* Smaller title */
+    }
+
+    .track-gallery-wrapper {
+        height: auto;
+        padding: 20px 0;
+        perspective: none;
+    }
+
+    .skewed-gallery {
+        flex-direction: column;
+        transform: none !important;
+        gap: 20px;
+        margin-top: 0;
+    }
+
+    .skew-image-card,
+    .center-card {
+        width: 100%;
+        max-width: 100%;
+        /* Full width */
+        height: 250px;
+        /* Fixed height for consistency */
+        margin: 0;
+        transform: none !important;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        /* Simpler shadow */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .track-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .since-block {
+        order: 2;
+        /* Move year below text or keep? Let's keep specific order */
+    }
+
+    .year-text {
+        font-size: 5rem;
+        /* Smaller big year */
+    }
+
+    .track-desc-block {
+        max-width: 100%;
+        /* Full width text */
+        background: rgba(0, 4, 40, 0.8);
+        /* Darker bg for readability */
+        padding: 20px;
+    }
+}

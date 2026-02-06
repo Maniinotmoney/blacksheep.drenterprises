@@ -1,0 +1,162 @@
+.work-section {
+    width: 100vw;
+    /* No padding here, we want full width split */
+    /* background-color: var(--white); */
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background-color: rgb(243, 243, 243);
+    overflow: hidden;
+}
+
+.work-container {
+    display: flex;
+    border-radius: 50px;
+    overflow: hidden;
+    /* background-color: pink; */
+    flex-direction: row;
+    min-height: 600px;
+    /* height: fit-content; */
+    /* width: 100vw; */
+}
+
+/* Left Column - Video */
+.work-video-col {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.work-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Slight overlay so video isn't too distracting if needed, or keeping it raw */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Right Column - Content */
+.work-content-col {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Align content to left of this col */
+    padding: 80px 60px;
+    background-color: #f0f0f0;
+    /* Fallback */
+}
+
+/* Grainy Background Effect */
+.grainy-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.content-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+}
+
+.work-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    /* Light weight for first part */
+    color: var(--primary-color);
+    line-height: 1.2;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.work-title .highlight {
+    font-weight: 900;
+    /* Bold for second line */
+    display: block;
+}
+
+.work-desc {
+    color: var(--text-light);
+    /* Or darker grey */
+    color: #4b5563;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.work-desc strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.btn-work {
+    display: inline-block;
+    background-color: #1a1a1a;
+    /* Dark button */
+    color: #ffffff;
+    padding: 15px 35px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-work:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .work-container {
+        flex-direction: column;
+    }
+
+    .work-video-col {
+        height: 400px;
+        /* Fixed height for video on mobile */
+    }
+
+    .work-content-col {
+        padding: 60px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-title {
+        font-size: 1.8rem;
+    }
+
+    .work-video-col {
+        height: 80vh;
+    }
+}
