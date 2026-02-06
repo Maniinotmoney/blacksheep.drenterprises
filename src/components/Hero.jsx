@@ -16,10 +16,13 @@ const Hero = ({ onActivegridTrigger }) => {
         }).catch(console.error);
     }, []);
 
-    // 5-click trigger logic
+    // 5-click trigger logic (Mobile Only)
     useEffect(() => {
         if (clickCount === 7) {
-            if (onActivegridTrigger) onActivegridTrigger();
+            // Only trigger if screen width is less than 768px (Mobile)
+            if (window.innerWidth < 768) {
+                if (onActivegridTrigger) onActivegridTrigger();
+            }
             setClickCount(0); // Reset
         }
 
