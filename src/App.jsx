@@ -12,6 +12,7 @@ import RevealSection from './components/RevealSection';
 import WorkSection from './components/WorkSection';
 import TrackRecord from './components/TrackRecord';
 import './styles/index.css';
+import Activegrid from './components/ActiveGrid';
 
 import StickyContact from './components/StickyContact';
 
@@ -19,6 +20,7 @@ import Hero from './components/Hero'; // Was FutureLogistics
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isActivegridActive, setIsActivegridActive] = useState(false);
 
   return (
     <>
@@ -28,7 +30,7 @@ function App() {
           <Header />
           <StickyContact />
           <main>
-            <Hero />
+            <Hero onActivegridTrigger={() => setIsActivegridActive(true)} />
             <Carousel />
 
             <RevealSection>
@@ -59,6 +61,7 @@ function App() {
 
           </main>
           <Footer />
+          <Activegrid isOpen={isActivegridActive} onClose={() => setIsActivegridActive(false)} />
         </div>
       )}
     </>
