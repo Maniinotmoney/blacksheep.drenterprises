@@ -5,8 +5,9 @@ import { motion } from 'framer-motion';
 import '../styles/FutureLogistics.css';
 import bgImage from '../assets/future-logistics-bg.png';
 
-const Hero = () => {
+const Hero = ({ onActivegridTrigger }) => {
     const [content, setContent] = useState(null);
+    const [clickCount, setClickCount] = useState(0);
 
     useEffect(() => {
         const query = '*[_type == "hero"][0]';
@@ -14,6 +15,25 @@ const Hero = () => {
             if (data) setContent(data);
         }).catch(console.error);
     }, []);
+
+    // 5-click trigger logic
+    useEffect(() => {
+        if (clickCount === 7) {
+            if (onActivegridTrigger) onActivegridTrigger();
+            setClickCount(0); // Reset
+        }
+
+        // Reset count if idle for 2 seconds
+        const timer = setTimeout(() => {
+            setClickCount(0);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [clickCount, onActivegridTrigger]);
+
+    const handleGlassClick = () => {
+        setClickCount(prev => prev + 1);
+    };
 
     const backgroundImage = content?.backgroundImage ? urlFor(content.backgroundImage).url() : bgImage;
 
@@ -36,6 +56,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 80 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}
+                    onClick={handleGlassClick}
                 >
                     {content?.heading ? (
                         <h2>{content.heading}</h2>
