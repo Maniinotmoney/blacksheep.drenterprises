@@ -1,0 +1,335 @@
+.future-logistics-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.future-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.future-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.future-overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.2) 100%);
+    pointer-events: none;
+}
+
+.future-content-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+
+.vertical-text-left {
+    position: absolute;
+    left: 20px;
+    bottom: 200px;
+    transform: rotate(-90deg);
+    transform-origin: left bottom;
+    white-space: nowrap;
+}
+
+.vertical-text-left span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+.future-glass-card {
+    position: absolute;
+    bottom: -10px;
+    left: 40px;
+    width: 450px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.future-glass-card h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.future-glass-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+}
+
+.future-cta-btn {
+    background: black;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 8px 8px 8px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: fit-content;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.future-cta-btn:hover {
+    transform: scale(1.05);
+}
+
+.future-cta-btn .icon-circle {
+    background: var(--black);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.future-play-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 15%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.play-btn-pulse {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+
+    cursor: pointer;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s;
+}
+
+.play-btn-pulse:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.play-text {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: left;
+}
+
+.play-text span {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.play-text strong {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+
+.future-stats-wrapper {
+    position: absolute;
+    bottom: 100px;
+    right: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar-group {
+    display: flex;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid white;
+    overflow: hidden;
+    margin-left: -15px;
+}
+
+.avatar:first-child {
+    margin-left: 0;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.stats-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-text strong {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.stats-text span {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    opacity: 0.9;
+}
+
+
+@media (max-width: 1024px) {
+    .vertical-text-left {
+        display: none;
+    }
+
+    .future-play-wrapper {
+        top: 25%;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .play-text {
+        text-align: center;
+        align-items: center;
+    }
+
+    .future-glass-card {
+        width: 80%;
+        left: 0%;
+        transform: translateX(-50%);
+        bottom: 10px;
+
+        padding: 30px;
+    }
+
+    .future-glass-card h2 {
+        font-size: 2rem;
+    }
+
+    .future-stats-wrapper {
+        display: flex;
+
+        position: absolute;
+        bottom: auto;
+        top: 45%;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stats-text {
+        align-items: center;
+        position: absolute;
+        bottom: 0px;
+        right: 50px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .future-play-wrapper {
+        top: 15%;
+        gap: 10px;
+    }
+
+    .play-btn-pulse {
+        width: 60px;
+        height: 60px;
+    }
+
+    .play-text span {
+        font-size: 0.9rem;
+    }
+
+    .play-text strong {
+        font-size: 1.2rem;
+    }
+
+    .future-stats-wrapper {
+        top: 35%;
+        gap: 10px;
+    }
+
+    .stats-text strong {
+        font-size: 1.2rem;
+    }
+
+    .future-glass-card {
+        width: 90%;
+        bottom: 20px;
+        padding: 25px;
+        border-radius: 20px;
+    }
+
+    .future-glass-card h2 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .future-glass-card p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .future-cta-btn {
+        padding: 6px 6px 6px 20px;
+        font-size: 0.9rem;
+    }
+
+    .future-cta-btn .icon-circle {
+        width: 35px;
+        height: 35px;
+    }
+}
