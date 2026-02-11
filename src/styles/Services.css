@@ -1,0 +1,167 @@
+.services-section {
+    /* background-color: #0e83f8; */
+    padding: 0;
+
+    position: relative;
+
+}
+
+
+.services-stack-wrapper {
+    margin-top: 0vh;
+    /* background-color: pink; */
+    margin-bottom: 20vh;
+}
+
+.cardContainer {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    margin-bottom: 50px;
+
+}
+
+.service-card-redesign {
+    background: var(--accent-color);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 -50px 80px rgba(0, 0, 0, 0.15);
+
+    border: 1px solid rgba(0, 88, 240, 0.883);
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 1000px;
+    height: 600px;
+
+    transform-origin: top;
+
+    position: relative;
+}
+
+.card-image-wrapper {
+    height: 60%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+    .card-image-wrapper {
+        height: 50vh;
+    }
+}
+
+.card-image-wrapper .inner {
+    width: 100%;
+    height: 100%;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 86, 210, 0.4) 100%);
+}
+
+.card-content {
+    padding: 30px 40px;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .card-content {
+        height: auto;
+
+        padding: 20px;
+        flex: 1;
+
+    }
+}
+
+.card-content h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.features-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.feature-tag {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.learn-more-btn {
+    margin-top: auto;
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 0;
+    width: max-content;
+    transition: gap 0.3s ease;
+}
+
+.learn-more-btn:hover {
+    gap: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1024px) {
+    .service-card-redesign {
+        width: 90vw;
+        height: fit-content;
+
+    }
+
+    .cardContainer {
+        /* background-color: red; */
+        width: 100vw;
+        top: 0vh;
+        margin-left: -5vw;
+        height: fit-content;
+
+    }
+
+    .section-title.text-dark {
+        font-size: 2.2rem;
+    }
+}
