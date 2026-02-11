@@ -41,7 +41,7 @@ const Hero = ({ onActivegridTrigger }) => {
                 if (images.length > 0) {
                     setBackgroundImages(images);
                 } else {
-                    // setBackgroundImages(defaultImages);
+                    setBackgroundImages(defaultImages);
                 }
             } else {
 
