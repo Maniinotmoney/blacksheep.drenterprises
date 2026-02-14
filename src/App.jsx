@@ -31,11 +31,9 @@ function App() {
           <StickyContact />
           <main>
             <Hero onActivegridTrigger={() => setIsActivegridActive(true)} />
-
-
-            <RevealSection>
-              <TrackRecord />
-            </RevealSection>
+            {/* <RevealSection> */}
+            <TrackRecord />
+            {/* </RevealSection> */}
 
             <RevealSection>
               <About />
@@ -43,9 +41,9 @@ function App() {
 
             <Services />
 
-            <RevealSection>
-              <WorkSection />
-            </RevealSection>
+            {/* <RevealSection> */}
+            <WorkSection />
+            {/* </RevealSection> */}
 
             <RevealSection>
               <Testimonials />
